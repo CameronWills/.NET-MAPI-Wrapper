@@ -81,6 +81,19 @@ namespace BrightcoveMapiWrapper.Model.Items
 			private set;
 		}
 
+        /// <summary>
+        /// The URL of the HLS master playlist if the video is not remote and null. 
+        /// This property will be non-null if and only if the length of the iosRenditions field is greater 
+        /// than zero. This means that the HLS renditions were generated when the video was transcoded by 
+        /// Video Cloud. HLS remote assets will not have an HLSURL or iosRenditions. This property 
+        /// applies, no matter whether the video's encoding is FLV (VP6) or MP4 (H.264).  
+        /// </summary>
+        public string HlsUrl
+        {
+            get;
+            private set;
+        }
+
 		/// <summary>
 		/// A number that uniquely identifies this Video, assigned by Brightcove when the Video is created.
 		/// </summary>
@@ -388,6 +401,10 @@ namespace BrightcoveMapiWrapper.Model.Items
 					case "FLVURL":
 						FlvUrl = (string)dictionary[key];
 						break;
+
+                    case "HLSURL":
+                        HlsUrl = (string)dictionary[key];
+                        break;
 
 					case "id":
 						Id = Convert.ToInt64(dictionary[key]);
